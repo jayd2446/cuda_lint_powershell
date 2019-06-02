@@ -53,6 +53,7 @@ class PSLint(Linter):
 
     tempfile_suffix = 'ps'
     multiline = False
+    syntax='PowerShell'
     word_re = r'^([-\S]+|\s+$)'
     defaults = {
         "selector": "source.powershell"
