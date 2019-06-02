@@ -1,0 +1,6 @@
+[info]
+title=Linter for Powershell
+desc=Linter for CudaLint, adds support for Powershell
+type=cudatext-plugin
+subdir=cuda_lint_powershell
+
