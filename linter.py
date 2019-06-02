@@ -40,11 +40,14 @@ foreach ("\\$Result" in "\\$FullResult")
     }
 }"""
 
+if os.name == 'nt':
+    bcmd = 'powershell.exe -nol -c {}; '
+else:
+    bcmd = 'pwsh -nol -c {}; '
+
+
 class PSLint(Linter):
-    if os.name == 'nt':
-        cmd = 'powershell.exe -nol -c {}; '.format(script)
-    else:
-        cmd = 'pwsh -nol -c {}; '.format(script)
+    cmd = bcmd.format(script)
 
     regex = (
         r'Line:(?P<line>\d+)\sRuleName:(?P<code>\w+)\sSeverity:((?P<error>\S*?Error)|'
@@ -55,6 +58,7 @@ class PSLint(Linter):
     multiline = False
     syntax='PowerShell'
     word_re = r'^([-\S]+|\s+$)'
+    
     defaults = {
         "selector": "source.powershell"
     }
